@@ -5,4 +5,4 @@ from ..models import Alignment
 class AlignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alignment
-        fields = ('id', 'search_sequence', 'search_genomes', 'status')
+        fields = ('id', 'search_sequence', 'search_genomes', 'status', 'matched_genes')

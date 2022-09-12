@@ -8,6 +8,7 @@ API available at `localhost:8000`
 # Timing
 - 1 hour to bootstrap docker/django/redis/postgres
 - 1 hour django migrations/urls/drf setup with initial AlignmentModel and Viewset
+- 1 hour researching Biopython for accessing gene data, this seems like something that could be included in description of problem.
 
 # Caveats
 - Write unit/integration tests given time
@@ -19,4 +20,6 @@ API available at `localhost:8000`
 - Validation and Caching on sequences submitted/ran
 - Would save genomes as separate DB model in standard scenario (rather than text field)
 - Create partial alignment matching/scores rather than binary 
+- Could add pagination to API for performance
+- Could have user registration flow
 

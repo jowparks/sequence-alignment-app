@@ -3,6 +3,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
+from .gene import Gene
+from .genome import Genome
+
 
 class Alignment(models.Model):
     class Status(models.TextChoices):
@@ -18,4 +21,7 @@ class Alignment(models.Model):
     )
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     search_sequence = models.CharField(max_length=50, help_text="DNA sequence that you want to align")
-    search_genomes = models.TextField(help_text="Genomes (comma separated list) that you want to align against")
+    search_genomes = models.ManyToManyField(Genome)
+    matched_genes = models.ManyToManyField(Gene)
+
+
