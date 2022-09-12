@@ -10,18 +10,6 @@ from ..serializers.alignment import AlignmentSerializer
 
 
 class AlignmentViewSet(viewsets.ModelViewSet):
-    """
-    Alignments.
-    ---
-    search:
-        omit_serializer: true
-        parameters:
-            - name: name
-              description: article title
-    get_price:
-
-
-    """
     serializer_class = AlignmentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
