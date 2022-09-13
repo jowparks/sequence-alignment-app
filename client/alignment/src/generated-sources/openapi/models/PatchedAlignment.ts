@@ -13,6 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Gene } from './Gene';
+import {
+    GeneFromJSON,
+    GeneFromJSONTyped,
+    GeneToJSON,
+} from './Gene';
+import type { Genome } from './Genome';
+import {
+    GenomeFromJSON,
+    GenomeFromJSONTyped,
+    GenomeToJSON,
+} from './Genome';
 import type { StatusEnum } from './StatusEnum';
 import {
     StatusEnumFromJSON,
@@ -40,10 +52,10 @@ export interface PatchedAlignment {
     searchSequence?: string;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<Genome>}
      * @memberof PatchedAlignment
      */
-    searchGenomes?: Array<number>;
+    readonly searchGenomes?: Array<Genome>;
     /**
      * 
      * @type {StatusEnum}
@@ -52,10 +64,10 @@ export interface PatchedAlignment {
     status?: StatusEnum;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<Gene>}
      * @memberof PatchedAlignment
      */
-    matchedGenes?: Array<number>;
+    readonly matchedGenes?: Array<Gene>;
 }
 
 /**
@@ -79,9 +91,9 @@ export function PatchedAlignmentFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'id': !exists(json, 'id') ? undefined : json['id'],
         'searchSequence': !exists(json, 'search_sequence') ? undefined : json['search_sequence'],
-        'searchGenomes': !exists(json, 'search_genomes') ? undefined : json['search_genomes'],
+        'searchGenomes': !exists(json, 'search_genomes') ? undefined : ((json['search_genomes'] as Array<any>).map(GenomeFromJSON)),
         'status': !exists(json, 'status') ? undefined : StatusEnumFromJSON(json['status']),
-        'matchedGenes': !exists(json, 'matched_genes') ? undefined : json['matched_genes'],
+        'matchedGenes': !exists(json, 'matched_genes') ? undefined : ((json['matched_genes'] as Array<any>).map(GeneFromJSON)),
     };
 }
 
@@ -95,9 +107,7 @@ export function PatchedAlignmentToJSON(value?: PatchedAlignment | null): any {
     return {
         
         'search_sequence': value.searchSequence,
-        'search_genomes': value.searchGenomes,
         'status': StatusEnumToJSON(value.status),
-        'matched_genes': value.matchedGenes,
     };
 }
 

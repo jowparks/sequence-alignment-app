@@ -400,18 +400,66 @@ components:
         search_genomes:
           type: array
           items:
-            type: integer
+            $ref: '#/components/schemas/Genome'
+          readOnly: true
         status:
           $ref: '#/components/schemas/StatusEnum'
         matched_genes:
           type: array
           items:
-            type: integer
+            $ref: '#/components/schemas/Gene'
+          readOnly: true
       required:
       - id
       - matched_genes
       - search_genomes
       - search_sequence
+    Gene:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        genome:
+          allOf:
+          - $ref: '#/components/schemas/Genome'
+          readOnly: true
+        sequence:
+          type: string
+          description: e.g. AACGGAATACCAGAGAG
+        name:
+          type: string
+          description: e.g. a001L
+        protein:
+          type: string
+          description: e.g. hypothetical protein
+        db_xref:
+          type: string
+          description: e.g. GeneID:918202
+        protein_id:
+          type: string
+          description: NP_048349.1'
+      required:
+      - db_xref
+      - genome
+      - id
+      - name
+      - protein
+      - protein_id
+      - sequence
+    Genome:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        accession:
+          type: string
+          description: e.g. NC_000852
+          maxLength: 50
+      required:
+      - accession
+      - id
     PatchedAlignment:
       type: object
       properties:
@@ -425,13 +473,15 @@ components:
         search_genomes:
           type: array
           items:
-            type: integer
+            $ref: '#/components/schemas/Genome'
+          readOnly: true
         status:
           $ref: '#/components/schemas/StatusEnum'
         matched_genes:
           type: array
           items:
-            type: integer
+            $ref: '#/components/schemas/Gene'
+          readOnly: true
     StatusEnum:
       enum:
       - created

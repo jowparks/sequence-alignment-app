@@ -13,6 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Gene } from './Gene';
+import {
+    GeneFromJSON,
+    GeneFromJSONTyped,
+    GeneToJSON,
+} from './Gene';
+import type { Genome } from './Genome';
+import {
+    GenomeFromJSON,
+    GenomeFromJSONTyped,
+    GenomeToJSON,
+} from './Genome';
 import type { StatusEnum } from './StatusEnum';
 import {
     StatusEnumFromJSON,
@@ -40,10 +52,10 @@ export interface Alignment {
     searchSequence: string;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<Genome>}
      * @memberof Alignment
      */
-    searchGenomes: Array<number>;
+    readonly searchGenomes: Array<Genome>;
     /**
      * 
      * @type {StatusEnum}
@@ -52,10 +64,10 @@ export interface Alignment {
     status?: StatusEnum;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<Gene>}
      * @memberof Alignment
      */
-    matchedGenes: Array<number>;
+    readonly matchedGenes: Array<Gene>;
 }
 
 /**
@@ -83,9 +95,9 @@ export function AlignmentFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'id': json['id'],
         'searchSequence': json['search_sequence'],
-        'searchGenomes': json['search_genomes'],
+        'searchGenomes': ((json['search_genomes'] as Array<any>).map(GenomeFromJSON)),
         'status': !exists(json, 'status') ? undefined : StatusEnumFromJSON(json['status']),
-        'matchedGenes': json['matched_genes'],
+        'matchedGenes': ((json['matched_genes'] as Array<any>).map(GeneFromJSON)),
     };
 }
 
@@ -99,9 +111,7 @@ export function AlignmentToJSON(value?: Alignment | null): any {
     return {
         
         'search_sequence': value.searchSequence,
-        'search_genomes': value.searchGenomes,
         'status': StatusEnumToJSON(value.status),
-        'matched_genes': value.matchedGenes,
     };
 }
 

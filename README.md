@@ -21,11 +21,9 @@ Run with `docker-compose up`
 
 
 # TODO
-- Return submodel fields in serializer
-- bootstrap react frontend
-- openapi client frontend
 - celery/redis async task setup
-- Run on host
+- update asynchronous status of job once alignment is completed
+- Run on remote host
 
 # Caveats
 - Write unit/integration tests given time
