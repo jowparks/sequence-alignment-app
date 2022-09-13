@@ -30,6 +30,14 @@ services:
     depends_on:
       - redis
       - db
+  client:
+    build:
+      context: ./client/alignment
+    ports:
+      - "3000:80"
+    depends_on:
+      - web
+
   celery_worker:
     build:
       context: ./server

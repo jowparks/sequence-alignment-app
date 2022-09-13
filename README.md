@@ -2,13 +2,30 @@
 
 Run with `docker-compose up`
 
-API available at `localhost:8000`
+- DRF API available at `localhost:8000`
+- OpenAPI (Swagger) available at `localhost:8000/api/schema/swagger-ui/`
 - Test user registered with `username=test` and `password=test`
+
+
+# Schema/Client regeneration:
+- From server/api dir: `python manage.py spectacular --file ../../client/alignment/openapi-schema.yml`
+- From client/alignment dir: `npm run codegen`
+
 
 # Timing
 - 1 hour to bootstrap docker/django/redis/postgres
 - 1 hour django migrations/urls/drf setup with initial AlignmentModel and Viewset
 - 1 hour researching Biopython for accessing gene data, this seems like something that could be included in description of problem.
+- 2 hours getting DRF setup with OpenAPI and endpoint setup, synchronous genome creation and gene search
+- 1 hour bootstrapping frontend and OpenAPI client
+
+
+# TODO
+- Return submodel fields in serializer
+- bootstrap react frontend
+- openapi client frontend
+- celery/redis async task setup
+- Run on host
 
 # Caveats
 - Write unit/integration tests given time
@@ -22,4 +39,5 @@ API available at `localhost:8000`
 - Create partial alignment matching/scores rather than binary 
 - Could add pagination to API for performance
 - Could have user registration flow
+- Would not need to expose ports in prd docker-compose
 
