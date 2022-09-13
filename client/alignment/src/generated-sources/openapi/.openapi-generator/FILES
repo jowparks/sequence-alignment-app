@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+apis/AlignmentApi.ts
+apis/ApiApi.ts
+apis/index.ts
+index.ts
+models/Alignment.ts
+models/PatchedAlignment.ts
+models/StatusEnum.ts
+models/TokenObtainPair.ts
+models/TokenRefresh.ts
+models/index.ts
+runtime.ts
