@@ -39,5 +39,6 @@ Run with `docker-compose up`
 - Create partial alignment matching/scores rather than binary 
 - Could add pagination to API for performance
 - Could have user registration flow
-- Would not need to expose ports in prd docker-compose
+- Would not need to expose ports in prd docker-compose, separate container for nginx
+- Optimize docker buils
 
