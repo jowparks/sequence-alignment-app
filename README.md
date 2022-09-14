@@ -1,5 +1,7 @@
 # sequence-alignment-app
 
+Video demo: https://youtu.be/zog2_ZMgm_s
+
 Run with `docker-compose up`
 
 - DRF API available at `localhost:8000`
@@ -22,9 +24,9 @@ Run with `docker-compose up`
 
 
 # TODO
-- celery/redis async task setup
+- celery/redis async task setup, run genome construction async and alignment async
 - update asynchronous status of job once alignment is completed
-- Run on remote host
+- Run on remote host via docker and/or split up services into separate running containers
 
 # Caveats
 - Write unit/integration tests given time
