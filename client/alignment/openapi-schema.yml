@@ -409,11 +409,21 @@ components:
           items:
             $ref: '#/components/schemas/Gene'
           readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
       required:
+      - created
       - id
       - matched_genes
       - search_genomes
       - search_sequence
+      - updated
     Gene:
       type: object
       properties:
@@ -481,6 +491,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Gene'
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
           readOnly: true
     StatusEnum:
       enum:

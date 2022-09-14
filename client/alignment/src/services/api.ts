@@ -16,7 +16,19 @@ export const alignmentSearch = (sequence: string, genomes: Array<string>) => {
     genomes: genomes,
   }) 
   .then((response) => {
-    console.log(response);
+    return response;
+  });;
+};
+
+export const alignmentList = () => {
+  const headers = authHeader();
+  const configuration = new Configuration({
+    basePath: "",
+    headers: headers,
+  });
+  const alignmentApi = new AlignmentApi(configuration);
+  return alignmentApi.alignmentList()
+  .then((response) => {
     return response;
   });;
 };
@@ -38,7 +50,6 @@ export const login = (username: string, password: string) => {
       },
     })
     .then((response) => {
-      console.log(response);
       if (response.access) {
         localStorage.setItem("user", JSON.stringify(response));
       }

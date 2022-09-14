@@ -68,6 +68,18 @@ export interface Alignment {
      * @memberof Alignment
      */
     readonly matchedGenes: Array<Gene>;
+    /**
+     * 
+     * @type {Date}
+     * @memberof Alignment
+     */
+    readonly created: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof Alignment
+     */
+    readonly updated: Date;
 }
 
 /**
@@ -79,6 +91,8 @@ export function instanceOfAlignment(value: object): boolean {
     isInstance = isInstance && "searchSequence" in value;
     isInstance = isInstance && "searchGenomes" in value;
     isInstance = isInstance && "matchedGenes" in value;
+    isInstance = isInstance && "created" in value;
+    isInstance = isInstance && "updated" in value;
 
     return isInstance;
 }
@@ -98,6 +112,8 @@ export function AlignmentFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'searchGenomes': ((json['search_genomes'] as Array<any>).map(GenomeFromJSON)),
         'status': !exists(json, 'status') ? undefined : StatusEnumFromJSON(json['status']),
         'matchedGenes': ((json['matched_genes'] as Array<any>).map(GeneFromJSON)),
+        'created': (new Date(json['created'])),
+        'updated': (new Date(json['updated'])),
     };
 }
 

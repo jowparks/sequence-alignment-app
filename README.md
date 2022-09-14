@@ -18,6 +18,7 @@ Run with `docker-compose up`
 - 1 hour researching Biopython for accessing gene data, this seems like something that could be included in description of problem.
 - 2 hours getting DRF setup with OpenAPI and endpoint setup, synchronous genome creation and gene search
 - 1 hour bootstrapping frontend and OpenAPI client
+- 2.5 hour using openapi, installing json display, setting up hooks
 
 
 # TODO

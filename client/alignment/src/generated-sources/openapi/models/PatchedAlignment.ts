@@ -68,6 +68,18 @@ export interface PatchedAlignment {
      * @memberof PatchedAlignment
      */
     readonly matchedGenes?: Array<Gene>;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PatchedAlignment
+     */
+    readonly created?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PatchedAlignment
+     */
+    readonly updated?: Date;
 }
 
 /**
@@ -94,6 +106,8 @@ export function PatchedAlignmentFromJSONTyped(json: any, ignoreDiscriminator: bo
         'searchGenomes': !exists(json, 'search_genomes') ? undefined : ((json['search_genomes'] as Array<any>).map(GenomeFromJSON)),
         'status': !exists(json, 'status') ? undefined : StatusEnumFromJSON(json['status']),
         'matchedGenes': !exists(json, 'matched_genes') ? undefined : ((json['matched_genes'] as Array<any>).map(GeneFromJSON)),
+        'created': !exists(json, 'created') ? undefined : (new Date(json['created'])),
+        'updated': !exists(json, 'updated') ? undefined : (new Date(json['updated'])),
     };
 }
 

@@ -10,4 +10,4 @@ class AlignmentSerializer(serializers.ModelSerializer):
     search_genomes = GenomeSerializer(many=True, read_only=True)
     class Meta:
         model = Alignment
-        fields = ('id', 'search_sequence', 'search_genomes', 'status', 'matched_genes')
+        fields = ('id', 'search_sequence', 'search_genomes', 'status', 'matched_genes', 'created', 'updated')

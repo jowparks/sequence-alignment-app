@@ -12,7 +12,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package-lock.json ./
 COPY . ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 # Build step #2: build an nginx container
