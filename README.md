@@ -3,7 +3,7 @@
 Video demo: https://youtu.be/zog2_ZMgm_s
 
 Run with `docker-compose up`
-
+- App available at `localhost:3000`
 - DRF API available at `localhost:8000`
 - OpenAPI (Swagger) available at `localhost:8000/api/schema/swagger-ui/`
 - Test user registered with `username=test` and `password=test`
